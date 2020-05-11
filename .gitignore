@@ -1,0 +1,18 @@
+# directorys
+node_modules/
+alway/
+
+# configuration files
+config.json
+
+# snippet file
+delete.js
+delete*
+*.py
+uaf*
+
+# log file
+report*
+
+# unstable file
+*.t.js
