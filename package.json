@@ -1,28 +1,29 @@
 {
   "name": "discordbot",
-  "version": "0.1.0",
-  "description": "ไฟลชวยสหรบไรสาระนกรม เตอนผใช ปง และเครองมออน ๆ",
+  "version": "0.1.1",
+  "description": "บอตช่วยเหลือและเครื่องมือที่สั่งการทำงานได้จากบนดิสคอร์ต และการทำงานเชิงอัตโนมัติ",
   "main": "index.js",
   "scripts": {
-    "test": "echo [ERR!]:No command test defined"
+    "test": "echo No command test defined"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ptsgrn/discordbot.git"
+    "url": "git+git@gitlab.com:ptsgrn/tds.git"
   },
   "keywords": [
     "bot",
     "discord",
     "helpbot",
     "thai",
-    "uncyclopedia"
+    "uncyclopedia",
+    "mediawiki"
   ],
   "author": "Patsagorn Y.",
   "license": "CC-BY-SA-3.0",
   "bugs": {
-    "url": "https://github.com/ptsgrn/discordbot/issues"
+    "url": "https://gitlab.com/ptsgrn/tds/-/issues"
   },
-  "homepage": "https://github.com/ptsgrn/discordbot#readme",
+  "homepage": "https://gitlab.com/ptsgrn/tds#readme",
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
     "addressparser": "^1.0.1",

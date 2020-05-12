@@ -3,7 +3,7 @@
  *  =============================================
  *  @description: start command
  *  @author: Patzagorn Y?
- *  @license: CC-BY-SA-2.0
+ *  @license: CC-BY-SA-3.0
  *  =============================================
  *
  */

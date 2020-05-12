@@ -3,7 +3,7 @@
  *  @description: auth and pair user between wiki
  *                and discord
  *  @author: Patzagorn Y?
- *  @license: CC-BY-SA-2.0
+ *  @license: CC-BY-SA-3.0
  *  =============================================
  *
  */

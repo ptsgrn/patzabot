@@ -4,6 +4,7 @@ alway/
 
 # configuration files
 config.json
+.env
 
 # snippet file
 delete.js
@@ -16,3 +17,4 @@ report*
 
 # unstable file
 *.t.js
+labs/
