@@ -8,28 +8,28 @@
  *
  */
 
+require('dotenv').config();
 require("./lib/mw.js")();
 const discord = require("discord.js");
 const fs = require("fs");
-const config = require("./config.json");
 var EventEmitter2 = require('eventemitter2');
 var em = new EventEmitter2();
 const bot = new discord.Client();
+const others = {
+    "moment": require("moment")
+    }
 var mw = new mwbot({
-    "protocol": config.mw.protocal,
-    "server": config.mw.wikiurl,
-    "path": config.mw.scriptpath,
-    "username": config.mw.username,
-    "password": config.mw.password,
-    "userAgent": "patzaBot by <@655456388058710034> on discord",  
+    "protocol": "https",
+    "server": "ไร้สาระนุกรม.com",
+    "path": "",
+    "username": process.env.wiki_bot_username,
+    "password": process.env.wiki_bot_password,
+    "userAgent": "PatzaBot powered by nodemw",  
   });
-const authChannel = new discord.WebhookClient(config.authChannel.id, config.authChannel.token);
-const logChannel = new discord.WebhookClient("709246065873780787","9jQo_oZcWj9gkyVClWLRf7OueZHiM_ISfqjEG6SEp_CCNGYNb7zoM3jYAz_KApUa0W_Q");
-
+var tasks = [];
 // When bot ready
 bot.on("ready", async () => {
   console.log(`${bot.user.username}:พร้อม `+new Date());
-  bot.user.setActivity("ใช้ `"+config.prefix+"` เป็น Prefix");
 });
 
 // Load commands
@@ -37,13 +37,11 @@ bot.commands = new discord.Collection();
 fs.readdir("./commands/", (err, files) => {
   if (err) console.error(err);
   let jsfiles = files.filter(f => f.split(".").pop() === "js");
-
   if (jsfiles.length <= 0) return console.log("ไม่พบคำสั่งใดพร้อมใช้งาน");
-
   console.log(`กำลังโหลด ${jsfiles.length} คำสั่งที่พบ`);
   jsfiles.forEach((f, i) => {
     let props = require(`./commands/${f}`);
-    console.log(`${i + 1}: ${f} โหลดเรียบร้อย`);
+    console.log(`/c ${f} loaded`);
     if (typeof props.meta.command === 'object'){
         for (let e=0;e<props.meta.command.length;e++){
             bot.commands.set(props.meta.command[e], props);
@@ -58,7 +56,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("message", (message) => {
   if (message.author.bot) return;
   if (message.channel.type === "dm") return;
-  let prefix = config.prefix;
+  let prefix = process.env.prefix;
   let messageArray = message.content.split(" ");
   let command = messageArray[0].toLowerCase();
   let args = messageArray.slice(1);
@@ -102,7 +100,7 @@ em.on('onRecentchangeItem',(u,c)=>{
         return;
     }
     let authusersscript = bot.commands.get("auth");
-    authusersscript.watchRecentChanges(u, c, mw, authChannel);
+    authusersscript.watchRecentChanges(u, c, mw);
 });
 
 setInterval(function(){
@@ -114,4 +112,24 @@ setInterval(function(){
     });
 }, 3000);
 
-bot.login(config.token);
+// Also working on tasks
+fs.readdir("./tasks/", (err, files) => {
+    if (err) console.error(err);
+    let jsfiles = files.filter(f => f.split(".").pop() === "js");
+    if (jsfiles.length <= 0) return console.log("ไม่พบการทำงานที่ควรทำพร้อมใช้งาน");
+    console.log(`กำลังโหลด ${jsfiles.length} การทำงานที่พบ`);
+    jsfiles.forEach((f, i) => {
+        let props = require(`./tasks/${f}`);
+        console.log(`/t ${f} loaded`);
+        tasks.push(props);
+    });
+});
+
+if(process.env.run_tasks == "true"){
+    setInterval(function(){
+        for (let t = 0;t>tasks.length;t++) {
+            tasks[t].run(bot, mw, process.env, others);
+        }
+    }, 1000*60*15);
+}
+bot.login(process.env.discord_token);

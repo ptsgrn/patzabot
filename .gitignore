@@ -5,6 +5,7 @@ alway/
 # configuration files
 config.json
 .env
+.swp
 
 # snippet file
 delete.js

@@ -57,6 +57,7 @@
     "lodash.has": "^4.5.2",
     "lodash.uniq": "^4.5.0",
     "mime-types": "^2.1.26",
+    "moment": "^2.25.3",
     "node-version-compare": "^1.0.2",
     "oauth-sign": "^0.9.0",
     "performance-now": "^2.1.0",
