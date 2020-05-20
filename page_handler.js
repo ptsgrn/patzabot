@@ -37,3 +37,4 @@ bot.on('message', m => {
         m.channel.send(text);
     }
 });
+bot.login(process.env.discord_token);
