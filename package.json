@@ -40,6 +40,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "ecc-jsbn": "^0.2.0",
+    "eslint-config-google": "^0.14.0",
     "eventemitter": "^0.3.3",
     "eventemitter2": "^6.4.0",
     "extend": "^3.0.2",
