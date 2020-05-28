@@ -4,7 +4,10 @@
   "description": "บอตช่วยเหลือและเครื่องมือที่สั่งการทำงานได้จากบนดิสคอร์ต และการทำงานเชิงอัตโนมัติ",
   "main": "index.js",
   "scripts": {
-    "test": "echo No command test defined"
+    "test": "echo No command test defined",
+    "page": "forever start page_handler.js",
+    "start": "forever index.js",
+    "eslint": "eslint ./commands --fix && eslint ./tasks --fix"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,7 @@
   "bugs": {
     "url": "https://gitlab.com/ptsgrn/tds/-/issues"
   },
-  "homepage": "https://gitlab.com/ptsgrn/tds#readme",
+  "homepage": "https://th.uncyclopedia.info/wiki/ผู้ใช้:PatzaBot",
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
     "addressparser": "^1.0.1",
@@ -41,7 +44,6 @@
     "dotenv": "^8.2.0",
     "ecc-jsbn": "^0.2.0",
     "eslint-config-google": "^0.14.0",
-    "eventemitter": "^0.3.3",
     "eventemitter2": "^6.4.0",
     "extend": "^3.0.2",
     "forever-agent": "^0.6.1",

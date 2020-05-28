@@ -62,7 +62,7 @@ bot.on("message", (message) => {
   let args = messageArray.slice(1);
   if (!command.startsWith(prefix)) return;
   let cmd = bot.commands.get(command.slice(prefix.length));
-  if (cmd) {cmd.run(bot, message, args, mw, logChannel)};
+  if (cmd) {cmd.run(bot, message, args, mw, others)};
 });
 
 // *** [[Page]] handler
@@ -100,7 +100,7 @@ em.on('onRecentchangeItem',(u,c)=>{
         return;
     }
     let authusersscript = bot.commands.get("auth");
-    authusersscript.watchRecentChanges(u, c, mw);
+    authusersscript.watchRecentChanges(u, c, mw, bot);
 });
 
 setInterval(function(){
