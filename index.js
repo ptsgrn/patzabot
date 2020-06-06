@@ -64,7 +64,7 @@ bot.on("message", (message) => {
   let cmd = bot.commands.get(command.slice(prefix.length));
   if (cmd) {cmd.run(bot, message, args, mw, others)};
 });
-
+/*
 // *** [[Page]] handler
 bot.on('message', m => {
     let patt1 = /\[{2,}(.*?)\]{2,}?/gm;
@@ -93,7 +93,7 @@ bot.on('message', m => {
         m.channel.send(text);
     }
 });
-
+*/
 em.on('onRecentchangeItem',(u,c)=>{
     let tester = /\d{8}/.test(c);
     if (!tester || u == "PatzaBot"){
@@ -105,7 +105,7 @@ em.on('onRecentchangeItem',(u,c)=>{
 
 setInterval(function(){
     mw.getRecentChanges(false,(e,d) =>{
-        if (e) throw e;
+        if (e) console.error(e);
         for (let t = 0;t < d.length;t++){
             em.emit('onRecentchangeItem',d[t].user,d[t].comment);
         }
@@ -125,11 +125,12 @@ fs.readdir("./tasks/", (err, files) => {
     });
 });
 
-if(process.env.run_tasks == "true"){
-    setInterval(function(){
+setInterval(function(){
+    if(process.env.run_tasks == "true"){
         for (let t = 0;t>tasks.length;t++) {
             tasks[t].run(bot, mw, process.env, others);
+            console.log(`/r ${tasks[t]} running`);
         }
-    }, 1000*60*15);
-}
+    }
+}, 1000*60*15);
 bot.login(process.env.discord_token);

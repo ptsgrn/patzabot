@@ -1,21 +1,26 @@
 # directorys
 node_modules/
 alway/
+package-lock.json
 
 # configuration files
 config.json
 .env
 .swp
 
-# snippet file
+# snippet files
 delete.js
 delete*
 *.py
 uaf*
 
-# log file
+# log files
 report*
+logs/
 
-# unstable file
+# unstable files
 *.t.js
 labs/
+
+# data files
+data/

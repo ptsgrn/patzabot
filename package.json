@@ -1,6 +1,6 @@
 {
   "name": "discordbot",
-  "version": "0.1.1",
+  "version": "0.1.1-alpha",
   "description": "บอตช่วยเหลือและเครื่องมือที่สั่งการทำงานได้จากบนดิสคอร์ต และการทำงานเชิงอัตโนมัติ",
   "main": "index.js",
   "scripts": {
@@ -43,7 +43,6 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "ecc-jsbn": "^0.2.0",
-    "eslint-config-google": "^0.14.0",
     "eventemitter2": "^6.4.0",
     "extend": "^3.0.2",
     "forever-agent": "^0.6.1",
