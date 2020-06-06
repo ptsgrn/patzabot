@@ -1,5 +1,5 @@
 
-/*  
+/*
  *  =============================================
  *  @description: start command
  *  @author: Patzagorn Y?
@@ -9,7 +9,7 @@
  */
 
 require('dotenv').config();
-require("./lib/mw.js")();
+const mwbot = require("nodemw");
 const discord = require("discord.js");
 const fs = require("fs");
 var EventEmitter2 = require('eventemitter2');
@@ -24,7 +24,7 @@ var mw = new mwbot({
     "path": "",
     "username": process.env.wiki_bot_username,
     "password": process.env.wiki_bot_password,
-    "userAgent": "PatzaBot powered by nodemw",  
+    "userAgent": "PatzaBot (android 8.1 arm64)",  
   });
 var tasks = [];
 // When bot ready
