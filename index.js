@@ -1,7 +1,5 @@
-
 /*
  *  =============================================
- *  @description: start command
  *  @author: Patzagorn Y?
  *  @license: CC-BY-SA-3.0
  *  =============================================
@@ -15,9 +13,12 @@ const fs = require("fs");
 var EventEmitter2 = require('eventemitter2');
 var em = new EventEmitter2();
 const bot = new discord.Client();
-const others = {
-    "moment": require("moment")
+const helpers = {
+    "moment": require("moment"),
+    "log": require("./lib/report")
     }
+let date = helpers.moment().format("HH[:]mm[:]ss, D MMMM y");
+const version = require("./package").version;
 var mw = new mwbot({
     "protocol": "https",
     "server": "ไร้สาระนุกรม.com",
@@ -30,12 +31,15 @@ var tasks = [];
 // When bot ready
 bot.on("ready", async () => {
   console.log(`${bot.user.username}:พร้อม `+new Date());
+  bot.user.setActivity('มนุษย์คุยกัน หุ่นยนต์อย่างเราก็งงมนุษย์เค้าคุยอะไรกันนะ', { type: 'LISTENING', url: "https://ไร้สาระนุกรม.com/wiki/ผู้ใช้:PatzaBot"}).catch(helpers.log.error);
+  bot.channels.fetch("719087386184908887").then(channel => { 
+channel.send(`:rocket: ${date} Deployed v${version}`);
+  });
 });
-
 // Load commands
 bot.commands = new discord.Collection();
 fs.readdir("./commands/", (err, files) => {
-  if (err) console.error(err);
+  if (err) helpers.log.error(err);
   let jsfiles = files.filter(f => f.split(".").pop() === "js");
   if (jsfiles.length <= 0) return console.log("ไม่พบคำสั่งใดพร้อมใช้งาน");
   console.log(`กำลังโหลด ${jsfiles.length} คำสั่งที่พบ`);
@@ -62,7 +66,7 @@ bot.on("message", (message) => {
   let args = messageArray.slice(1);
   if (!command.startsWith(prefix)) return;
   let cmd = bot.commands.get(command.slice(prefix.length));
-  if (cmd) {cmd.run(bot, message, args, mw, others)};
+  if (cmd) {cmd.run(bot, message, args, mw, helpers)};
 });
 /*
 // *** [[Page]] handler
@@ -105,7 +109,7 @@ em.on('onRecentchangeItem',(u,c)=>{
 
 setInterval(function(){
     mw.getRecentChanges(false,(e,d) =>{
-        if (e) console.error(e);
+        if (e) helpers.log.wikierror(e);
         for (let t = 0;t < d.length;t++){
             em.emit('onRecentchangeItem',d[t].user,d[t].comment);
         }
@@ -114,7 +118,7 @@ setInterval(function(){
 
 // Also working on tasks
 fs.readdir("./tasks/", (err, files) => {
-    if (err) console.error(err);
+    if (err) helpers.log.warn(err);
     let jsfiles = files.filter(f => f.split(".").pop() === "js");
     if (jsfiles.length <= 0) return console.log("ไม่พบการทำงานที่ควรทำพร้อมใช้งาน");
     console.log(`กำลังโหลด ${jsfiles.length} การทำงานที่พบ`);
@@ -125,12 +129,11 @@ fs.readdir("./tasks/", (err, files) => {
     });
 });
 
-setInterval(function(){
-    if(process.env.run_tasks == "true"){
-        for (let t = 0;t>tasks.length;t++) {
-            tasks[t].run(bot, mw, process.env, others);
-            console.log(`/r ${tasks[t]} running`);
-        }
+if(process.env.run_tasks == "true"){
+    for (let t = 0;t>tasks.length;t++) {
+        tasks[t].run(bot, mw, process.env, others);
+        console.log(`/r ${tasks[t]} running`);
     }
-}, 1000*60*15);
+}
+
 bot.login(process.env.discord_token);

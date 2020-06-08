@@ -9,7 +9,7 @@
  */
 
 module.exports.run = async (b, m, a, mw) => {
-var resMsg = await m.channel.send('Ping is being appreciated... :bar_chart:');
+var resMsg = await m.channel.send('กำลังคำนวน... :bar_chart:');
     resMsg.edit('Ping: ' + b.ws.ping);
 };
 
