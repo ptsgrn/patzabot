@@ -115,8 +115,8 @@ setInterval(function(){
         }
     });
 }, 3000);
-
-// Also working on tasks
+/*
+// Also working on tasks disabled for now
 fs.readdir("./tasks/", (err, files) => {
     if (err) helpers.log.warn(err);
     let jsfiles = files.filter(f => f.split(".").pop() === "js");
@@ -135,5 +135,5 @@ if(process.env.run_tasks == "true"){
         console.log(`/r ${tasks[t]} running`);
     }
 }
-
+*/
 bot.login(process.env.discord_token);
