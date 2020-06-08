@@ -1,7 +1,6 @@
 # directorys
 node_modules/
 alway/
-package-lock.json
 
 # configuration files
 config.json
@@ -9,13 +8,9 @@ config.json
 .swp
 
 # snippet files
-delete.js
-delete*
-*.py
 uaf*
 
 # log files
-report*
 logs/
 
 # unstable files
