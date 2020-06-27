@@ -4,14 +4,14 @@
   "description": "บอตช่วยเหลือและเครื่องมือที่สั่งการทำงานได้จากบนดิสคอร์ต และการทำงานเชิงอัตโนมัติ",
   "main": "index.js",
   "scripts": {
-    "test": "echo No command test defined",
+    "test": "DOTENV_CONFIG_dryrun=true node lib/test.js",
     "page": "forever start page_handler.js",
     "start": "forever index.js",
     "eslint": "eslint ./commands --fix && eslint ./tasks --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+git@gitlab.com:ptsgrn/tds.git"
+    "url": "git+git@github.com:ptsgrn/patzabot.git"
   },
   "keywords": [
     "bot",
@@ -24,14 +24,14 @@
   "author": "Patsagorn Y.",
   "license": "CC-BY-SA-3.0",
   "bugs": {
-    "url": "https://gitlab.com/ptsgrn/tds/-/issues"
+    "url": "https://github.com/ptsgrn/patzabot/issues"
   },
   "homepage": "https://th.uncyclopedia.info/wiki/ผู้ใช้:PatzaBot",
   "dependencies": {
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
-    "eventemitter2": "^6.4.2",
-    "moment": "^2.26.0",
+    "eventemitter2": "^6.4.3",
+    "moment": "^2.27.0",
     "nodemw": "^0.13.0"
   }
 }
