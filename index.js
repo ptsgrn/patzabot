@@ -118,22 +118,22 @@ setInterval(function(){
 /*
 // Also working on tasks disabled for now
 fs.readdir("./tasks/", (err, files) => {
-    if (err) helpers.log.warn(err);
-    let jsfiles = files.filter(f => f.split(".").pop() === "js");
-    if (jsfiles.length <= 0) return console.log("ไม่พบการทำงานที่ควรทำพร้อมใช้งาน");
-    console.log(`กำลังโหลด ${jsfiles.length} การทำงานที่พบ`);
-    jsfiles.forEach((f, i) => {
-        let props = require(`./tasks/${f}`);
-        console.log(`/t ${f} loaded`);
-        tasks.push(props);
-    });
+	if (err) helpers.log.warn(err);
+	let jsfiles = files.filter(f => f.split(".").pop() === "js");
+	if (jsfiles.length <= 0) return console.log("ไม่พบการทำงานที่ควรทำพร้อมใช้งาน");
+	console.log(`กำลังโหลด ${jsfiles.length} การทำงานที่พบ`);
+	jsfiles.forEach((f, i) => {
+		let props = require(`./tasks/${f}`);
+		console.log(`/t ${f} loaded`);
+		tasks.push(props);
+	});
 });
 
 if(process.env.run_tasks == "true"){
-    for (let t = 0;t>tasks.length;t++) {
-        tasks[t].run(bot, mw, process.env, others);
-        console.log(`/r ${tasks[t]} running`);
-    }
+	for (let t = 0;t>tasks.length;t++) {
+		tasks[t].run(bot, mw, process.env, others);
+		console.log(`/r ${tasks[t]} running`);
+	}
 }
 */
 bot.login(process.env.discord_token);
