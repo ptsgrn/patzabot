@@ -114,7 +114,7 @@ setInterval(function(){
 			em.emit('onRecentchangeItem',d[t].user,d[t].comment);
 		}
 	});
-}, 1800000);
+}, 900000);
 
 /*
 // Also working on tasks disabled for now
