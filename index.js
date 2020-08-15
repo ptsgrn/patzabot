@@ -114,7 +114,8 @@ setInterval(function(){
 			em.emit('onRecentchangeItem',d[t].user,d[t].comment);
 		}
 	});
-}, 3000);
+}, 1800000);
+
 /*
 // Also working on tasks disabled for now
 fs.readdir("./tasks/", (err, files) => {
