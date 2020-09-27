@@ -68,7 +68,7 @@ bot.on('message', (message) => {
 	let cmd = bot.commands.get(command.slice(prefix.length));
 	if (cmd) {cmd.run(bot, message, args, mw, helpers);}
 });
-
+/*
 // *** [[Page]] handler
 bot.on('message', m => {
 	let patt1 = /\[{2,}(.*?)\]{2,}?/gm;
@@ -97,7 +97,7 @@ bot.on('message', m => {
 		m.channel.send(text);
 	}
 });
-
+*/
 em.on('onRecentchangeItem',(u,c)=>{
 	let tester = /\d{8}/.test(c);
 	if (!tester || u == 'PatzaBot'){
