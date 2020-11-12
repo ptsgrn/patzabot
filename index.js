@@ -17,7 +17,7 @@ const bot = new discord.Client();
 const helpers = {
 	'moment': require('moment'),
 	'log': require('./lib/report'),
- 'wcc': new wikichanges.WikiChanges({wikipedias: ["#commons.wikimedia"], ircNickname: 'PatsaBot_commonswatcher'});
+ 'wcc': new wikichanges.WikiChanges({wikipedias: ["#commons.wikimedia"], ircNickname: 'PatsaBot_commonswatcher'})
 };
 let date = helpers.moment().format('HH[:]mm[:]ss, D MMMM y');
 const version = require('./package').version;
