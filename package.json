@@ -32,6 +32,7 @@
     "dotenv": "^8.2.0",
     "eventemitter2": "^6.4.3",
     "moment": "^2.27.0",
-    "nodemw": "^0.13.0"
+    "nodemw": "^0.13.0",
+    "wikichanges": "^0.2.9"
   }
 }

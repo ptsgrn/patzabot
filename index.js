@@ -11,11 +11,13 @@ const mwbot = require('nodemw');
 const discord = require('discord.js');
 const fs = require('fs');
 var EventEmitter2 = require('eventemitter2');
+const wikichanges = require("wikichanges");
 var em = new EventEmitter2();
 const bot = new discord.Client();
 const helpers = {
 	'moment': require('moment'),
-	'log': require('./lib/report')
+	'log': require('./lib/report'),
+ 'wcc': new wikichanges.WikiChanges({wikipedias: ["#commons.wikimedia"], ircNickname: 'PatsaBot_commonswatcher'});
 };
 let date = helpers.moment().format('HH[:]mm[:]ss, D MMMM y');
 const version = require('./package').version;
@@ -33,7 +35,7 @@ bot.on('ready', async () => {
 	console.log(`${bot.user.username}:พร้อม `+new Date());
 	bot.user.setActivity('มนุษย์คุยกัน หุ่นยนต์อย่างเราก็งงมนุษย์เค้าคุยอะไรกันนะ', { type: 'LISTENING', url: 'https://ไร้สาระนุกรม.com/wiki/ผู้ใช้:PatzaBot'}).catch(helpers.log.error);
 	bot.channels.fetch('719087386184908887').then(channel => { 
-		channel.send(`:rocket: ${date} Deployed v${version}`);
+		channel.send(`:rocket: ${date} Ready on v${version}`);
 	});
 });
 // Load commands
