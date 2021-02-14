@@ -9,9 +9,10 @@
  */
 
 module.exports.run = async (b, m, a, mw, h) => {
+   let channel = m.channel;
    h.wcc.listen(function(c) {
       if (c.comment.indexOf('th.wik') == -1) return;
-      h.log.commons(`${c.user} อัปโหลด ${c.pageUrl}`);
+      channel.send(`**${c.user}** ${c.userUrl}`, channel);
    });
 };
 
